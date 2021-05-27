@@ -272,21 +272,10 @@ public class MainComputer {
             }
             path.add(par);
         } else {
-            //AnswerLevel.errorPath();
             System.out.println("Path not found");
         }
 
         System.out.println("ready BFS");
-
-        //MatOfByte matOfByte = new MatOfByte();
-        //Imgcodecs.imencode(".jpg", to_draw, matOfByte);        //перевод изображения в байтовую матрицу
-        //byte[] byteArray = matOfByte.toArray();                //перевод байтовой матрицы в массив
-        //InputStream in = new ByteArrayInputStream(byteArray);  //перевод в буферизованное изображени
-        //BufferedImage bufImage = ImageIO.read(in);
-        //JFrame frame = new JFrame();                           //создаем окно
-        //frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));   //показвваем изображение
-        //frame.pack();
-        //frame.setVisible(true);
     }
 
     public static void mouse_event(int pX, int pY) throws IOException {
@@ -306,15 +295,6 @@ public class MainComputer {
 
             System.out.println("ready 1");
 
-            //MatOfByte matOfByte = new MatOfByte();
-            //Imgcodecs.imencode(".jpg", to_draw, matOfByte);        //перевод изображения в байтовую матрицу
-            //byte[] byteArray = matOfByte.toArray();                //перевод байтовой матрицы в массив
-            //InputStream in = new ByteArrayInputStream(byteArray);  //перевод в буферизованное изображение
-            //BufferedImage bufImage = ImageIO.read(in);
-            //JFrame frame = new JFrame();                           //создаем окно
-            //frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));   //показвваем изображение
-            //frame.pack();
-            //frame.setVisible(true);
         } else if (p == 1) {
             end = new Point();
             end.x = pX;// - 7;
@@ -330,15 +310,6 @@ public class MainComputer {
             AnswerLevel.answerImage.setImageDrawable(drawable);
 
             System.out.println("ready 2");
-            //MatOfByte matOfByte = new MatOfByte();
-            //Imgcodecs.imencode(".jpg", to_draw, matOfByte);        //перевод изображения в байтовую матрицу
-            //byte[] byteArray = matOfByte.toArray();                //перевод байтовой матрицы в массив
-            //InputStream in = new ByteArrayInputStream(byteArray);  //перевод в буферизованное изображение
-            //BufferedImage bufImage = ImageIO.read(in);
-            //JFrame frame = new JFrame();                           //создаем окно
-            //frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));   //показвваем изображение
-            //frame.pack();
-            //frame.setVisible(true);
         }
         else if (p == 2) {
          ВFS();
@@ -408,19 +379,14 @@ public class MainComputer {
         Mat src;                                         //исходное изображение
         int thresh = 100;                                //пороговое значение
 
-        //String file = "C://Users//79852//Desktop//Screens//maze.jpg"; //путь до изображения
-        //src = Imgcodecs.imread(file);                  //загружаем изображение из файла
-        // image to byte array
         src = convertImageViewMat(AnswerLevel.answerImage);
 
         if (src.empty()) {                               //обработка ошибки загрузки
             System.out.println("Could not open or find the image!\n");
-            // предложить загрузить заново
         }
         Imgproc.cvtColor(src, src, Imgproc.COLOR_BGR2RGB); //конвертирование изображения
         Imgproc.cvtColor(src, src, Imgproc.COLOR_RGB2GRAY);
         Imgproc.GaussianBlur(src, src, new Size(15, 15), 0);
-//Imgproc.threshold(src, src, 0, 255, Imgproc.THRESH_OTSU);
         Imgproc.adaptiveThreshold(src, src, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY_INV, 7, 2);
         Imgproc.cvtColor(src, src_gray, Imgproc.COLOR_GRAY2BGR);
 
@@ -454,7 +420,6 @@ public class MainComputer {
         all_cont_mat.fromList(all_contours);
 
         Rect boundingRect = Imgproc.boundingRect(all_cont_mat);                //прямоугольник вокруг контура
-        //Imgproc.rectangle(res, boundingRect, new Scalar(255, 0, 0));
 
         List<MatOfPoint> hull_list = new ArrayList<>();                        //выпуклая оболочка
         MatOfPoint contour = all_cont_mat;
@@ -479,16 +444,6 @@ public class MainComputer {
         AnswerLevel.answerImage.setImageDrawable(drawable);
 
         System.out.println("ready Main");
-
-        //MatOfByte matOfByte = new MatOfByte();
-        //Imgcodecs.imencode(".jpg", res, matOfByte);        //перевод изображения в байтовую матрицу
-        //byte[] byteArray = matOfByte.toArray();                //перевод байтовой матрицы в массив
-        //InputStream in = new ByteArrayInputStream(byteArray);  //перевод в буферизованное изображение
-        //BufferedImage bufImage = ImageIO.read(in);
-        //JFrame frame = new JFrame();                           //создаем окно
-        //frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));   //показвваем изображение
         MouseDemo md = new MouseDemo(AnswerLevel.answerImage, 400, 400);
-        //frame.pack();
-        //frame.setVisible(true);
     }
 };
